@@ -738,15 +738,31 @@
       transition: border-color var(--transition), transform var(--transition);
     }
 
-    .playlist-ep:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .playlist-ep:not(.coming):hover { border-color: var(--gold); transform: translateY(-2px); }
+
+    .playlist-ep.coming { cursor: default; opacity: 0.45; }
 
     .playlist-ep img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+
+    .playlist-ep-placeholder { width: 100%; aspect-ratio: 16/9; background: var(--bg-3); }
 
     .playlist-ep-title {
       padding: 0.6rem 0.75rem;
       font-size: 0.75rem;
       color: var(--text-dim);
       font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .coming-badge {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 0.1rem 0.4rem;
     }
 
     .modal-inner.playlist-mode .modal-video-wrap { aspect-ratio: unset; }
@@ -1420,7 +1436,7 @@
       <div class="films-grid" id="films-grid">
 
         <!-- ── RESCATISTAS ── -->
-        <div class="film-card fade-up" data-category="ficcion" data-video="https://player.vimeo.com/video/50413399">
+        <div class="film-card fade-up" data-category="ficcion" data-playlist='[{"title":"Trailer","url":"https://player.vimeo.com/video/50413399","thumb":"images/rescatistas-claqueta.jpg"},{"title":"Ep. 01","id":"6f69bJf4FzU"},{"title":"Ep. 02","coming":true},{"title":"Ep. 03","coming":true},{"title":"Ep. 04","coming":true},{"title":"Ep. 05","coming":true},{"title":"Ep. 06","coming":true},{"title":"Ep. 07","coming":true},{"title":"Ep. 08","coming":true}]'>
           <div class="film-thumb">
             <img src="images/rescatistas-afiche.jpg" alt="Rescatistas: Brigada de montaña" style="width:100%;height:100%;object-fit:cover">
             <div class="film-thumb-overlay">
@@ -1435,7 +1451,7 @@
           <div class="film-info">
             <p class="film-genre">Ficción TV · Aventura</p>
             <h3 class="film-title">Rescatistas: Brigada de montaña</h3>
-            <p class="film-desc">Miniserie de 8 episodios filmada íntegramente en El Chaltén. La historia de una brigada de rescate voluntaria en los Hielos Continentales de la Patagonia, inspirada en hechos reales. TV Pública.</p>
+            <p class="film-desc">Miniserie de 8 episodios filmada en El Chaltén. Brigada de rescate voluntaria en los Hielos Continentales de la Patagonia. TV Pública.</p>
             <div class="film-meta">
               <span>8 eps · 26 min</span>
               <span class="film-awards">
@@ -1444,29 +1460,6 @@
                 </svg>
                 Premio Concurso Federal de Series 2011
               </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── RESCATISTAS EP01 ── -->
-        <div class="film-card fade-up" data-category="ficcion" data-video="https://www.youtube.com/embed/6f69bJf4FzU" style="transition-delay:0.08s">
-          <div class="film-thumb">
-            <img src="https://img.youtube.com/vi/6f69bJf4FzU/hqdefault.jpg" alt="Rescatistas - Capítulo 1" style="width:100%;height:100%;object-fit:cover">
-            <div class="film-thumb-overlay">
-              <div class="play-btn">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M6 4l9 5-9 5V4z" fill="currentColor"/>
-                </svg>
-              </div>
-            </div>
-            <div class="film-year-badge">2013</div>
-          </div>
-          <div class="film-info">
-            <p class="film-genre">Ficción TV · Aventura</p>
-            <h3 class="film-title">Rescatistas — Capítulo 1</h3>
-            <p class="film-desc">Episodio 1 de 8. Miniserie filmada en El Chaltén sobre una brigada de rescate voluntaria en los Hielos Continentales de la Patagonia. TV Pública.</p>
-            <div class="film-meta">
-              <span>8 eps · 26 min</span>
             </div>
           </div>
         </div>
@@ -1612,7 +1605,7 @@
         </div>
 
         <!-- ── ANTÁRTICA DESAFÍO POLAR ── -->
-        <div class="film-card fade-up" data-category="documental" data-video="https://www.youtube.com/embed/Kk3h1R_HoHQ">
+        <div class="film-card fade-up" data-category="documental" data-playlist='[{"title":"Demo · Serie completa","id":"Kk3h1R_HoHQ"},{"title":"Extra · Recital KUG Orchestra","id":"qV4P6X6Fz2o"},{"title":"Cap. 01","coming":true},{"title":"Cap. 02","coming":true},{"title":"Cap. 03","coming":true},{"title":"Cap. 04","coming":true}]'>
           <div class="film-thumb">
             <img src="https://img.youtube.com/vi/Kk3h1R_HoHQ/hqdefault.jpg" alt="Antártica Desafío Polar" style="width:100%;height:100%;object-fit:cover">
             <div class="film-thumb-overlay">
@@ -1626,7 +1619,7 @@
           <div class="film-info">
             <p class="film-genre">Serie Documental · Director</p>
             <h3 class="film-title">Antártica: Desafío Polar</h3>
-            <p class="film-desc">Serie de 4 capítulos sobre el continente antártico. Banda sonora compuesta por Germán Tello, interpretada por la KUG Filmmusik Orchester en Graz, Austria.</p>
+            <p class="film-desc">Serie de 4 capítulos sobre el continente antártico. Banda sonora de Germán Tello · KUG Filmmusik Orchester, Graz, Austria.</p>
             <div class="film-meta">
               <span>Serie documental · 4 capítulos</span>
               <span class="film-awards">
@@ -1635,28 +1628,6 @@
                 </svg>
                 Graz, Austria · KUG Filmmusik Orchester
               </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── ANTÁRTICA - RECITAL KUG ── -->
-        <div class="film-card fade-up" data-category="documental" data-video="https://www.youtube.com/embed/qV4P6X6Fz2o" style="transition-delay:0.08s">
-          <div class="film-thumb">
-            <img src="https://img.youtube.com/vi/qV4P6X6Fz2o/hqdefault.jpg" alt="Antártica - Recital KUG Orchestra" style="width:100%;height:100%;object-fit:cover">
-            <div class="film-thumb-overlay">
-              <div class="play-btn">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M6 4l9 5-9 5V4z" fill="currentColor"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="film-info">
-            <p class="film-genre">Documental · Música en vivo</p>
-            <h3 class="film-title">Antártica — Recital KUG Orchestra</h3>
-            <p class="film-desc">Recital en vivo con el compositor Germán Tello y la KUG Filmmusik Orchester en Graz, Austria. Banda sonora original de la serie Antártica: Desafío Polar.</p>
-            <div class="film-meta">
-              <span>Concierto en vivo · Graz, Austria</span>
             </div>
           </div>
         </div>
@@ -1705,7 +1676,7 @@
         </div>
 
         <!-- ── EQUILIBRIOS - PARQUES NACIONALES ── -->
-        <div class="film-card fade-up" data-category="documental" data-playlist='[{"title":"Ep. 01 — Nahuel Huapi","id":"SaW_wbLLaic"},{"title":"Ep. 02","id":"A8Aq-FUWAD8"},{"title":"Ep. 04","id":"Tl27wosSGPM"},{"title":"Ep. 05 — Campos del Tuyú","id":"ia7z4MY7Iag"}]' style="transition-delay:0.24s">
+        <div class="film-card fade-up" data-category="documental" data-playlist='[{"title":"Ep. 01 — Nahuel Huapi","id":"SaW_wbLLaic"},{"title":"Ep. 02","id":"A8Aq-FUWAD8"},{"title":"Ep. 03","coming":true},{"title":"Ep. 04","id":"Tl27wosSGPM"},{"title":"Ep. 05 — Campos del Tuyú","id":"ia7z4MY7Iag"}]' style="transition-delay:0.24s">
           <div class="film-thumb">
             <img src="https://img.youtube.com/vi/SaW_wbLLaic/hqdefault.jpg" alt="Equilibrios - Parques Nacionales" style="width:100%;height:100%;object-fit:cover">
             <div class="film-thumb-overlay">
@@ -2298,14 +2269,27 @@
 
     const placeholderHTML = videoWrap.innerHTML; // save placeholder
 
-    function playVideo(id) {
+    const modalInner = document.querySelector('.modal-inner');
+
+    function playVideo(embedUrl) {
       modalInner.classList.remove('playlist-mode');
-      videoWrap.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" width="100%" height="100%"
+      const sep = embedUrl.includes('?') ? '&' : '?';
+      videoWrap.innerHTML = `<iframe src="${embedUrl}${sep}autoplay=1" width="100%" height="100%"
         frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
         allowfullscreen style="position:absolute;inset:0;width:100%;height:100%"></iframe>`;
     }
 
-    const modalInner = document.querySelector('.modal-inner');
+    function epEmbedUrl(ep) {
+      if (ep.url) return ep.url;
+      if (ep.id) return `https://www.youtube.com/embed/${ep.id}`;
+      return null;
+    }
+
+    function epThumbHtml(ep) {
+      if (ep.thumb) return `<img src="${ep.thumb}" alt="${ep.title}">`;
+      if (ep.id) return `<img src="https://img.youtube.com/vi/${ep.id}/hqdefault.jpg" alt="${ep.title}">`;
+      return `<div class="playlist-ep-placeholder"></div>`;
+    }
 
     filmCards.forEach(card => {
       card.addEventListener('click', () => {
@@ -2317,15 +2301,22 @@
           videoWrap.innerHTML = `
             <div class="playlist-title">Seleccioná un episodio</div>
             <div class="playlist-grid">
-              ${episodes.map(ep => `
-                <div class="playlist-ep" data-id="${ep.id}">
-                  <img src="https://img.youtube.com/vi/${ep.id}/hqdefault.jpg" alt="${ep.title}">
+              ${episodes.map(ep => {
+                const embedUrl = epEmbedUrl(ep);
+                if (ep.coming || !embedUrl) {
+                  return `<div class="playlist-ep coming">
+                    <div class="playlist-ep-placeholder"></div>
+                    <div class="playlist-ep-title">${ep.title} <span class="coming-badge">Próximamente</span></div>
+                  </div>`;
+                }
+                return `<div class="playlist-ep" data-url="${embedUrl}">
+                  ${epThumbHtml(ep)}
                   <div class="playlist-ep-title">${ep.title}</div>
-                </div>
-              `).join('')}
+                </div>`;
+              }).join('')}
             </div>`;
-          videoWrap.querySelectorAll('.playlist-ep').forEach(ep => {
-            ep.addEventListener('click', () => playVideo(ep.dataset.id));
+          videoWrap.querySelectorAll('.playlist-ep:not(.coming)').forEach(ep => {
+            ep.addEventListener('click', () => playVideo(ep.dataset.url));
           });
         } else if (url) {
           modalInner.classList.remove('playlist-mode');
