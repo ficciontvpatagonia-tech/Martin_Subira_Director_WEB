@@ -710,6 +710,47 @@
 
     .modal-close:hover { color: var(--gold-light); }
 
+    .playlist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 1.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .playlist-title {
+      padding: 1.25rem 1.5rem 0;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+    }
+
+    .playlist-ep {
+      cursor: pointer;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .playlist-ep:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+    .playlist-ep img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+
+    .playlist-ep-title {
+      padding: 0.6rem 0.75rem;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    .modal-inner.playlist-mode .modal-video-wrap { aspect-ratio: unset; }
+
     .modal-video-wrap {
       position: relative;
       aspect-ratio: 16/9;
@@ -1664,9 +1705,9 @@
         </div>
 
         <!-- ── EQUILIBRIOS - PARQUES NACIONALES ── -->
-        <div class="film-card fade-up" data-category="documental" data-video="https://www.youtube.com/embed/ia7z4MY7Iag" style="transition-delay:0.24s">
+        <div class="film-card fade-up" data-category="documental" data-playlist='[{"title":"Ep. 01 — Nahuel Huapi","id":"SaW_wbLLaic"},{"title":"Ep. 02","id":"A8Aq-FUWAD8"},{"title":"Ep. 04","id":"Tl27wosSGPM"},{"title":"Ep. 05 — Campos del Tuyú","id":"ia7z4MY7Iag"}]' style="transition-delay:0.24s">
           <div class="film-thumb">
-            <img src="https://img.youtube.com/vi/ia7z4MY7Iag/hqdefault.jpg" alt="Equilibrios - Parques Nacionales" style="width:100%;height:100%;object-fit:cover">
+            <img src="https://img.youtube.com/vi/SaW_wbLLaic/hqdefault.jpg" alt="Equilibrios - Parques Nacionales" style="width:100%;height:100%;object-fit:cover">
             <div class="film-thumb-overlay">
               <div class="play-btn">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -1678,75 +1719,9 @@
           <div class="film-info">
             <p class="film-genre">Serie Documental · Director</p>
             <h3 class="film-title">Equilibrios — Parques Nacionales</h3>
-            <p class="film-desc">Episodio 05 — Campos del Tuyú. Serie documental sobre los Parques Nacionales de la Argentina.</p>
+            <p class="film-desc">Serie sobre los Parques Nacionales de la Argentina. 4 episodios disponibles.</p>
             <div class="film-meta">
-              <span>Serie documental</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── EQUILIBRIOS - PARQUES NACIONALES EP02 ── -->
-        <div class="film-card fade-up" data-category="documental" data-video="https://www.youtube.com/embed/A8Aq-FUWAD8" style="transition-delay:0.32s">
-          <div class="film-thumb">
-            <img src="https://img.youtube.com/vi/A8Aq-FUWAD8/hqdefault.jpg" alt="Equilibrios - Parques Nacionales Ep02" style="width:100%;height:100%;object-fit:cover">
-            <div class="film-thumb-overlay">
-              <div class="play-btn">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M6 4l9 5-9 5V4z" fill="currentColor"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="film-info">
-            <p class="film-genre">Serie Documental · Director</p>
-            <h3 class="film-title">Equilibrios — Parques Nacionales</h3>
-            <p class="film-desc">Episodio 02. Serie documental sobre los Parques Nacionales de la Argentina.</p>
-            <div class="film-meta">
-              <span>Serie documental</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── EQUILIBRIOS - PARQUES NACIONALES EP04 ── -->
-        <div class="film-card fade-up" data-category="documental" data-video="https://www.youtube.com/embed/Tl27wosSGPM" style="transition-delay:0.08s">
-          <div class="film-thumb">
-            <img src="https://img.youtube.com/vi/Tl27wosSGPM/hqdefault.jpg" alt="Equilibrios - Parques Nacionales Ep04" style="width:100%;height:100%;object-fit:cover">
-            <div class="film-thumb-overlay">
-              <div class="play-btn">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M6 4l9 5-9 5V4z" fill="currentColor"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="film-info">
-            <p class="film-genre">Serie Documental · Director</p>
-            <h3 class="film-title">Equilibrios — Parques Nacionales</h3>
-            <p class="film-desc">Episodio 04. Serie documental sobre los Parques Nacionales de la Argentina.</p>
-            <div class="film-meta">
-              <span>Serie documental</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── EQUILIBRIOS - PARQUES NACIONALES EP01 ── -->
-        <div class="film-card fade-up" data-category="documental" data-video="https://www.youtube.com/embed/SaW_wbLLaic" style="transition-delay:0.16s">
-          <div class="film-thumb">
-            <img src="https://img.youtube.com/vi/SaW_wbLLaic/hqdefault.jpg" alt="Equilibrios - PN Nahuel Huapi" style="width:100%;height:100%;object-fit:cover">
-            <div class="film-thumb-overlay">
-              <div class="play-btn">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M6 4l9 5-9 5V4z" fill="currentColor"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="film-info">
-            <p class="film-genre">Serie Documental · Director</p>
-            <h3 class="film-title">Equilibrios — Parques Nacionales</h3>
-            <p class="film-desc">Episodio 01 — Parque Nacional Nahuel Huapi. Serie documental sobre los Parques Nacionales de la Argentina.</p>
-            <div class="film-meta">
-              <span>Serie documental</span>
+              <span>Serie documental · 4 episodios</span>
             </div>
           </div>
         </div>
@@ -2323,14 +2298,42 @@
 
     const placeholderHTML = videoWrap.innerHTML; // save placeholder
 
+    function playVideo(id) {
+      modalInner.classList.remove('playlist-mode');
+      videoWrap.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" width="100%" height="100%"
+        frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen style="position:absolute;inset:0;width:100%;height:100%"></iframe>`;
+    }
+
+    const modalInner = document.querySelector('.modal-inner');
+
     filmCards.forEach(card => {
       card.addEventListener('click', () => {
         const url = card.dataset.video;
-        if (url) {
+        const playlist = card.dataset.playlist;
+        if (playlist) {
+          const episodes = JSON.parse(playlist);
+          modalInner.classList.add('playlist-mode');
+          videoWrap.innerHTML = `
+            <div class="playlist-title">Seleccioná un episodio</div>
+            <div class="playlist-grid">
+              ${episodes.map(ep => `
+                <div class="playlist-ep" data-id="${ep.id}">
+                  <img src="https://img.youtube.com/vi/${ep.id}/hqdefault.jpg" alt="${ep.title}">
+                  <div class="playlist-ep-title">${ep.title}</div>
+                </div>
+              `).join('')}
+            </div>`;
+          videoWrap.querySelectorAll('.playlist-ep').forEach(ep => {
+            ep.addEventListener('click', () => playVideo(ep.dataset.id));
+          });
+        } else if (url) {
+          modalInner.classList.remove('playlist-mode');
           videoWrap.innerHTML = `<iframe src="${url}?autoplay=1" width="100%" height="100%"
             frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen style="position:absolute;inset:0;width:100%;height:100%"></iframe>`;
         } else {
+          modalInner.classList.remove('playlist-mode');
           videoWrap.innerHTML = placeholderHTML;
         }
         modal.classList.add('open');
