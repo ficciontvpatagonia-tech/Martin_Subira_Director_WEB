@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Martín Subirá — Director de cine, documentalista y director de fotografía. Patagonia, naturaleza e historia desde el cine argentino." />
   <title>Martín Subirá — Director de Cine</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,24 +14,35 @@
        TOKENS & RESET
     ───────────────────────────────────────── */
     :root {
-      --bg:          #0c0d0b;
-      --bg-2:        #111310;
-      --bg-3:        #171915;
-      --surface:     #1c1f19;
-      --border:      rgba(255,255,255,0.07);
-      --text:        #e4e8dc;
-      --text-muted:  #616b58;
-      --text-dim:    #a2ae94;
-      --gold:        #a8c48a;
-      --gold-light:  #c0d8a2;
-      --gold-dim:    rgba(168,196,138,0.13);
-      --green:       #7a9e5c;
-      --green-light: #94b872;
-      --green-dim:   rgba(122,158,92,0.13);
+      /* Paleta clara */
+      --bg:          #f7f6f2;
+      --bg-2:        #f0efe9;
+      --bg-3:        #e8e6df;
+      --surface:     #ffffff;
+      --border:      rgba(0,0,0,0.07);
+      --border-med:  rgba(0,0,0,0.13);
+
+      /* Texto */
+      --text:        #1c1b18;
+      --text-dim:    #3c3b36;
+      --text-muted:  #7a7870;
+
+      /* Acento principal: verde bosque (Patagonia) */
+      --accent:      #2c4a1e;
+      --accent-mid:  #3d6228;
+      --accent-light:#4d7a32;
+      --accent-dim:  rgba(44,74,30,0.08);
+
+      /* Dorado para premios */
+      --gold:        #7a5c1e;
+      --gold-light:  #9a7228;
+      --gold-dim:    rgba(122,92,30,0.09);
+
+      /* Layout */
       --radius:      2px;
-      --transition:  0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --transition:  0.36s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --max-w:       1100px;
-      --nav-h:       72px;
+      --nav-h:       68px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,10 +62,9 @@
       overflow-x: hidden;
     }
 
-    ::selection { background: var(--gold-dim); color: var(--gold-light); }
+    ::selection { background: var(--accent-dim); color: var(--accent); }
 
     img { display: block; max-width: 100%; }
-
     a { color: inherit; text-decoration: none; }
 
     /* ─────────────────────────────────────────
@@ -61,7 +72,7 @@
     ───────────────────────────────────────── */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb { background: var(--border-med); border-radius: 2px; }
 
     /* ─────────────────────────────────────────
        NAV
@@ -78,33 +89,41 @@
       transition: background var(--transition), box-shadow var(--transition);
     }
 
+    /* Sobre el hero (oscuro) el texto nav es blanco */
+    nav:not(.scrolled) .nav-logo        { color: rgba(255,255,255,0.9); }
+    nav:not(.scrolled) .nav-links a     { color: rgba(255,255,255,0.65); }
+    nav:not(.scrolled) .nav-links a:hover { color: #ffffff; }
+    nav:not(.scrolled) .hamburger span  { background: rgba(255,255,255,0.75); }
+
     nav.scrolled {
-      background: rgba(13,13,11,0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(247,246,242,0.96);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       box-shadow: 0 1px 0 var(--border);
     }
 
     .nav-logo {
       font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--gold-light);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      transition: color var(--transition);
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex;
-      gap: clamp(1.5rem, 3vw, 2.5rem);
+      gap: clamp(1.25rem, 2.5vw, 2.25rem);
       list-style: none;
     }
 
     .nav-links a {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 400;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text-dim);
+      color: var(--text-muted);
       transition: color var(--transition);
       position: relative;
     }
@@ -114,12 +133,12 @@
       position: absolute;
       bottom: -3px; left: 0;
       width: 0; height: 1px;
-      background: var(--gold);
+      background: var(--accent);
       transition: width var(--transition);
     }
 
-    .nav-links a:hover { color: var(--gold-light); }
-    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover            { color: var(--accent); }
+    .nav-links a:hover::after     { width: 100%; }
 
     /* Hamburger */
     .hamburger {
@@ -135,7 +154,7 @@
     .hamburger span {
       display: block;
       width: 24px; height: 1px;
-      background: var(--text-dim);
+      background: var(--text-muted);
       transition: var(--transition);
     }
 
@@ -148,7 +167,7 @@
       position: fixed;
       inset: 0;
       z-index: 99;
-      background: rgba(13,13,11,0.97);
+      background: rgba(247,246,242,0.98);
       backdrop-filter: blur(20px);
       flex-direction: column;
       align-items: center;
@@ -165,10 +184,10 @@
       transition: color var(--transition);
     }
 
-    .mobile-menu a:hover { color: var(--gold-light); }
+    .mobile-menu a:hover { color: var(--accent); }
 
     /* ─────────────────────────────────────────
-       HERO
+       HERO  (sección oscura — imagen de fondo)
     ───────────────────────────────────────── */
     #hero {
       position: relative;
@@ -185,34 +204,11 @@
       z-index: 0;
     }
 
-    /* ── Placeholder: reemplaza este bloque con una etiqueta <img> o <video> ── */
-    .hero-bg-placeholder {
+    .hero-bg img {
       width: 100%; height: 100%;
-      background:
-        linear-gradient(155deg, #141a0f 0%, #0c0d0b 50%, #090d08 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg-placeholder::before {
-      content: '';
+      object-fit: cover;
       position: absolute;
       inset: 0;
-      background-image:
-        radial-gradient(ellipse 80% 60% at 65% 35%, rgba(168,196,138,0.09) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 40% at 15% 75%, rgba(122,158,92,0.07) 0%, transparent 60%);
-    }
-
-    /* Grain overlay */
-    .hero-bg-placeholder::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 200px 200px;
-      pointer-events: none;
-      opacity: 0.4;
     }
 
     .hero-bg-overlay {
@@ -220,9 +216,9 @@
       inset: 0;
       background: linear-gradient(
         to top,
-        rgba(13,13,11,0.97) 0%,
-        rgba(13,13,11,0.5) 40%,
-        rgba(13,13,11,0.1) 100%
+        rgba(8,8,6,0.95)  0%,
+        rgba(8,8,6,0.48)  45%,
+        rgba(8,8,6,0.12)  100%
       );
       z-index: 1;
     }
@@ -239,44 +235,43 @@
       display: inline-flex;
       align-items: center;
       gap: 0.75rem;
-      font-size: 0.7rem;
+      font-size: 0.67rem;
       font-weight: 400;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1.25rem;
     }
 
     .hero-eyebrow::before {
       content: '';
       display: block;
       width: 2rem; height: 1px;
-      background: var(--gold);
+      background: rgba(255,255,255,0.35);
     }
 
     .hero-name {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(3rem, 9vw, 7.5rem);
+      font-size: clamp(3.5rem, 10vw, 8.5rem);
       font-weight: 700;
-      line-height: 0.96;
+      line-height: 0.92;
       letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 1rem;
+      color: #ffffff;
+      margin-bottom: 1.25rem;
     }
 
     .hero-name em {
       font-style: italic;
-      color: var(--gold-light);
+      color: rgba(255,255,255,0.72);
     }
 
     .hero-tagline {
       font-family: 'Instrument Serif', serif;
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
-      font-weight: 300;
+      font-size: clamp(1rem, 2.2vw, 1.3rem);
       font-style: italic;
-      color: var(--text-dim);
-      max-width: 480px;
-      line-height: 1.6;
+      color: rgba(255,255,255,0.5);
+      max-width: 420px;
+      line-height: 1.65;
       margin-bottom: 2.5rem;
     }
 
@@ -284,20 +279,19 @@
       display: inline-flex;
       align-items: center;
       gap: 0.75rem;
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.15em;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(200,164,90,0.35);
-      padding: 0.9rem 1.8rem;
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.28);
+      padding: 0.9rem 1.85rem;
       transition: var(--transition);
     }
 
     .hero-cta:hover {
-      background: var(--gold-dim);
-      border-color: var(--gold);
-      letter-spacing: 0.2em;
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.6);
     }
 
     .hero-cta svg { transition: transform var(--transition); }
@@ -312,29 +306,29 @@
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
-      font-size: 0.62rem;
+      font-size: 0.58rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.28);
     }
 
     .scroll-line {
       width: 1px;
-      height: 50px;
-      background: linear-gradient(to bottom, transparent, var(--gold));
-      animation: scrollPulse 2s ease-in-out infinite;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3));
+      animation: scrollPulse 2.2s ease-in-out infinite;
     }
 
     @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.1); }
+      0%, 100% { opacity: 0.3; }
+      50%       { opacity: 1; }
     }
 
     /* ─────────────────────────────────────────
        SHARED SECTION STYLES
     ───────────────────────────────────────── */
     section {
-      padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 5vw, 4rem);
+      padding: clamp(4.5rem, 11vh, 9rem) clamp(1.5rem, 5vw, 4rem);
     }
 
     .container {
@@ -346,48 +340,52 @@
       display: inline-flex;
       align-items: center;
       gap: 0.75rem;
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 0.2em;
+      font-size: 0.63rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
     }
 
     .section-label::before {
       content: '';
       display: block;
       width: 1.5rem; height: 1px;
-      background: var(--gold);
+      background: var(--accent);
     }
 
     .section-title {
       font-family: 'Syne', sans-serif;
       font-size: clamp(2rem, 5vw, 3.2rem);
       font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
       color: var(--text);
       margin-bottom: 1.5rem;
     }
 
-    .section-title em { font-style: italic; color: var(--gold-light); }
+    .section-title em {
+      font-style: italic;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
 
     .divider {
       width: 3rem; height: 1px;
-      background: linear-gradient(to right, var(--gold), transparent);
+      background: var(--border-med);
       margin-bottom: 2rem;
     }
 
     /* ─────────────────────────────────────────
        ABOUT
     ───────────────────────────────────────── */
-    #about { background: var(--bg-2); }
+    #about { background: var(--surface); }
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 6vw, 5rem);
+      grid-template-columns: 1fr 1.15fr;
+      gap: clamp(2.5rem, 7vw, 6rem);
       align-items: start;
     }
 
@@ -397,23 +395,14 @@
       overflow: hidden;
     }
 
-    /* ── Placeholder de foto ── */
-    .photo-placeholder {
+    .about-photo-wrap img {
       width: 100%; height: 100%;
-      background: var(--surface);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      color: var(--text-muted);
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 1px dashed rgba(255,255,255,0.1);
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
     }
 
-    .photo-placeholder svg { opacity: 0.25; }
+    .about-photo-wrap:hover img { transform: scale(1.03); }
 
     .about-photo-wrap::after {
       content: '';
@@ -425,9 +414,9 @@
 
     .about-photo-accent {
       position: absolute;
-      bottom: -1rem; right: -1rem;
-      width: 60%; height: 60%;
-      border: 1px solid rgba(200,164,90,0.2);
+      bottom: -1.25rem; right: -1.25rem;
+      width: 55%; height: 55%;
+      border: 1px solid var(--border-med);
       z-index: -1;
     }
 
@@ -435,19 +424,21 @@
 
     .about-bio {
       font-family: 'Instrument Serif', serif;
-      font-size: clamp(1.1rem, 2vw, 1.3rem);
-      font-weight: 300;
-      line-height: 1.8;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      line-height: 1.75;
       color: var(--text-dim);
       margin-bottom: 1.5rem;
     }
 
     .about-body {
       font-size: 0.9rem;
-      line-height: 1.85;
+      line-height: 1.9;
       color: var(--text-muted);
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
+
+    .about-body em     { color: var(--text-dim); font-style: italic; }
+    .about-body strong { color: var(--text-dim); font-weight: 500; }
 
     .about-stats {
       display: grid;
@@ -461,15 +452,15 @@
 
     .stat-num {
       font-family: 'Syne', sans-serif;
-      font-size: 2rem;
-      font-weight: 400;
-      color: var(--gold-light);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
       line-height: 1;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.35rem;
     }
 
     .stat-label {
-      font-size: 0.68rem;
+      font-size: 0.67rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -482,19 +473,19 @@
     }
 
     .tag {
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 0.4rem 0.9rem;
-      border: 1px solid var(--border);
+      padding: 0.35rem 0.85rem;
+      border: 1px solid var(--border-med);
       color: var(--text-muted);
       transition: var(--transition);
     }
 
     .tag:hover {
-      border-color: var(--green);
-      color: var(--green-light);
-      background: var(--green-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-dim);
     }
 
     /* ─────────────────────────────────────────
@@ -507,7 +498,7 @@
       align-items: flex-end;
       justify-content: space-between;
       margin-bottom: 3rem;
-      gap: 1rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
     }
 
@@ -518,11 +509,11 @@
     }
 
     .filter-btn {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 0.4rem 1rem;
-      border: 1px solid var(--border);
+      padding: 0.45rem 1rem;
+      border: 1px solid var(--border-med);
       background: none;
       color: var(--text-muted);
       cursor: pointer;
@@ -531,9 +522,9 @@
 
     .filter-btn:hover,
     .filter-btn.active {
-      border-color: var(--gold);
-      color: var(--gold-light);
-      background: var(--gold-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-dim);
     }
 
     .films-grid {
@@ -546,14 +537,13 @@
       background: var(--surface);
       border: 1px solid var(--border);
       overflow: hidden;
-      transition: var(--transition);
+      transition: box-shadow var(--transition), transform var(--transition);
       cursor: pointer;
     }
 
     .film-card:hover {
-      border-color: rgba(200,164,90,0.25);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
     }
 
     .film-thumb {
@@ -562,27 +552,19 @@
       overflow: hidden;
     }
 
-    /* ── Placeholder de miniatura ── */
-    .thumb-placeholder {
+    .film-thumb img {
       width: 100%; height: 100%;
-      background: var(--bg-3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      color: var(--text-muted);
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s ease;
     }
 
-    .thumb-placeholder svg { opacity: 0.2; }
+    .film-card:hover .film-thumb img { transform: scale(1.04); }
 
     .film-thumb-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(13,13,11,0.6);
+      background: rgba(0,0,0,0.42);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -593,31 +575,31 @@
     .film-card:hover .film-thumb-overlay { opacity: 1; }
 
     .play-btn {
-      width: 56px; height: 56px;
-      border: 1.5px solid rgba(200,164,90,0.6);
+      width: 52px; height: 52px;
+      border: 1.5px solid rgba(255,255,255,0.7);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--gold-light);
+      color: #fff;
       transition: var(--transition);
     }
 
     .play-btn:hover {
-      background: var(--gold-dim);
-      border-color: var(--gold-light);
-      transform: scale(1.1);
+      background: rgba(255,255,255,0.15);
+      border-color: #fff;
+      transform: scale(1.08);
     }
 
     .film-year-badge {
       position: absolute;
       top: 0.75rem; right: 0.75rem;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      padding: 0.25rem 0.6rem;
-      background: rgba(13,13,11,0.8);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      padding: 0.22rem 0.55rem;
+      background: rgba(255,255,255,0.9);
+      color: var(--text-dim);
+      font-weight: 500;
     }
 
     .film-info {
@@ -625,16 +607,17 @@
     }
 
     .film-genre {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--green-light);
+      color: var(--accent);
       margin-bottom: 0.5rem;
+      font-weight: 500;
     }
 
     .film-title {
       font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 600;
       letter-spacing: -0.01em;
       color: var(--text);
@@ -645,7 +628,7 @@
     .film-desc {
       font-size: 0.82rem;
       color: var(--text-muted);
-      line-height: 1.7;
+      line-height: 1.78;
       margin-bottom: 1rem;
     }
 
@@ -653,24 +636,26 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 0.68rem;
+      font-size: 0.67rem;
       color: var(--text-muted);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
+      border-top: 1px solid var(--border);
+      padding-top: 0.85rem;
     }
 
     .film-awards {
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.3rem;
       color: var(--gold);
     }
 
-    /* ── Video Modal ── */
+    /* ─── Video Modal ─── */
     .video-modal {
       position: fixed;
       inset: 0;
       z-index: 200;
-      background: rgba(0,0,0,0.92);
+      background: rgba(0,0,0,0.88);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -678,7 +663,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity var(--transition);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
     }
 
     .video-modal.open {
@@ -697,9 +682,9 @@
       top: -2.5rem; right: 0;
       background: none;
       border: none;
-      color: var(--text-dim);
+      color: rgba(255,255,255,0.55);
       cursor: pointer;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       display: flex;
@@ -708,60 +693,56 @@
       transition: color var(--transition);
     }
 
-    .modal-close:hover { color: var(--gold-light); }
+    .modal-close:hover { color: rgba(255,255,255,0.9); }
 
     .playlist-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 1rem;
       padding: 1.5rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
+      background: #0a0a08;
+      border: 1px solid rgba(255,255,255,0.07);
     }
 
     .playlist-title {
       padding: 1.25rem 1.5rem 0;
-      background: var(--bg);
-      border: 1px solid var(--border);
+      background: #0a0a08;
+      border: 1px solid rgba(255,255,255,0.07);
       border-bottom: none;
       font-family: 'Syne', sans-serif;
-      font-size: 0.9rem;
-      color: var(--gold-light);
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
       letter-spacing: 0.05em;
     }
 
     .playlist-ep {
       cursor: pointer;
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
       overflow: hidden;
       transition: border-color var(--transition), transform var(--transition);
     }
 
-    .playlist-ep:not(.coming):hover { border-color: var(--gold); transform: translateY(-2px); }
-
-    .playlist-ep.coming { cursor: default; opacity: 0.45; }
-
+    .playlist-ep:not(.coming):hover { border-color: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    .playlist-ep.coming { cursor: default; opacity: 0.4; }
     .playlist-ep img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
-
-    .playlist-ep-placeholder { width: 100%; aspect-ratio: 16/9; background: var(--bg-3); }
+    .playlist-ep-placeholder { width: 100%; aspect-ratio: 16/9; background: rgba(255,255,255,0.05); }
 
     .playlist-ep-title {
       padding: 0.6rem 0.75rem;
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      font-weight: 400;
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.6);
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
     .coming-badge {
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
+      color: rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.12);
       padding: 0.1rem 0.4rem;
     }
 
@@ -770,15 +751,14 @@
     .modal-video-wrap {
       position: relative;
       aspect-ratio: 16/9;
-      background: var(--bg);
-      border: 1px solid var(--border);
+      background: #0a0a08;
+      border: 1px solid rgba(255,255,255,0.07);
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    /* ── Placeholder de video ── */
     .video-embed-placeholder {
       width: 100%; height: 100%;
       display: flex;
@@ -786,8 +766,8 @@
       align-items: center;
       justify-content: center;
       gap: 1rem;
-      color: var(--text-muted);
-      font-size: 0.82rem;
+      color: rgba(255,255,255,0.28);
+      font-size: 0.8rem;
       letter-spacing: 0.08em;
       text-align: center;
       padding: 2rem;
@@ -796,29 +776,57 @@
     .video-embed-placeholder svg { opacity: 0.2; }
 
     .video-embed-placeholder code {
-      font-size: 0.72rem;
-      color: var(--gold);
-      background: var(--gold-dim);
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.07);
       padding: 0.3rem 0.6rem;
-      border-radius: var(--radius);
+      border-radius: 2px;
       font-family: monospace;
     }
 
     /* ─────────────────────────────────────────
+       GALERÍA BIO ANIMAL
+    ───────────────────────────────────────── */
+    #bioanimal-gallery { background: var(--bg-2); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+    }
+
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.06); }
+
+    /* ─────────────────────────────────────────
        PRESS
     ───────────────────────────────────────── */
-    #press { background: var(--bg-3); }
+    #press { background: var(--surface); }
 
     .press-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
       gap: 1px;
+      background: var(--border);
       border: 1px solid var(--border);
       margin-top: 3rem;
     }
 
     .press-card {
-      background: var(--bg-2);
+      background: var(--surface);
       padding: 2rem 1.75rem;
       display: flex;
       flex-direction: column;
@@ -828,7 +836,7 @@
       color: inherit;
     }
 
-    .press-card:hover { background: var(--surface); }
+    .press-card:hover { background: var(--bg); }
 
     .press-source-row {
       display: flex;
@@ -838,25 +846,25 @@
     }
 
     .press-source {
-      font-size: 0.65rem;
-      font-weight: 500;
+      font-size: 0.62rem;
+      font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(200,164,90,0.25);
-      padding: 0.25rem 0.65rem;
+      color: var(--accent);
+      border: 1px solid rgba(44,74,30,0.2);
+      padding: 0.22rem 0.6rem;
     }
 
     .press-date {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       color: var(--text-muted);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       white-space: nowrap;
     }
 
     .press-headline {
       font-family: 'Syne', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 600;
       letter-spacing: -0.01em;
       line-height: 1.35;
@@ -868,11 +876,11 @@
 
     .press-quote {
       font-family: 'Instrument Serif', serif;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-style: italic;
-      line-height: 1.7;
+      line-height: 1.75;
       color: var(--text-muted);
-      border-left: 2px solid rgba(200,164,90,0.3);
+      border-left: 2px solid var(--border-med);
       padding-left: 1rem;
       flex: 1;
     }
@@ -887,10 +895,10 @@
     }
 
     .press-tag {
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--green-light);
+      color: var(--text-muted);
     }
 
     .press-link-arrow {
@@ -898,13 +906,13 @@
       display: flex;
       align-items: center;
       gap: 0.35rem;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       transition: color var(--transition);
     }
 
-    .press-card:hover .press-link-arrow { color: var(--gold-light); }
+    .press-card:hover .press-link-arrow { color: var(--accent); }
 
     .press-link-arrow svg { transition: transform var(--transition); }
     .press-card:hover .press-link-arrow svg { transform: translateX(3px); }
@@ -912,7 +920,7 @@
     /* ─────────────────────────────────────────
        BLOG
     ───────────────────────────────────────── */
-    #blog { background: var(--bg-2); }
+    #blog { background: var(--bg); }
 
     .blog-grid {
       display: grid;
@@ -924,46 +932,45 @@
       background: var(--surface);
       border: 1px solid var(--border);
       overflow: hidden;
-      transition: var(--transition);
+      transition: box-shadow var(--transition);
     }
 
     .blog-featured:hover {
-      border-color: rgba(200,164,90,0.2);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.07);
     }
 
     .blog-featured-img {
       aspect-ratio: 16/8;
       overflow: hidden;
+      background: var(--bg-2);
     }
 
-    /* ── Placeholder de imagen blog ── */
     .blog-img-placeholder {
       width: 100%; height: 100%;
-      background: var(--bg-3);
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--text-muted);
-      font-size: 0.68rem;
+      font-size: 0.67rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
+      min-height: 200px;
     }
 
     .blog-featured-body { padding: 2rem; }
 
     .blog-category {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--accent);
+      font-weight: 500;
       margin-bottom: 0.75rem;
     }
 
     .blog-title {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-size: clamp(1.15rem, 2.5vw, 1.55rem);
       font-weight: 600;
       letter-spacing: -0.02em;
       color: var(--text);
@@ -972,57 +979,56 @@
       transition: color var(--transition);
     }
 
-    .blog-featured:hover .blog-title { color: var(--gold-light); }
+    .blog-featured:hover .blog-title { color: var(--accent); }
 
     .blog-excerpt {
       font-size: 0.85rem;
       color: var(--text-muted);
-      line-height: 1.75;
+      line-height: 1.8;
       margin-bottom: 1.25rem;
     }
 
     .blog-meta {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       color: var(--text-muted);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       display: flex;
       align-items: center;
       gap: 1rem;
     }
 
-    .blog-meta span::before { content: '·'; margin-right: 1rem; }
+    .blog-meta span::before       { content: '·'; margin-right: 1rem; }
     .blog-meta span:first-child::before { content: none; }
 
     .blog-sidebar {
       display: flex;
       flex-direction: column;
       gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
     }
 
     .blog-card {
       background: var(--surface);
-      border: 1px solid var(--border);
       padding: 1.25rem 1.5rem;
-      transition: var(--transition);
+      transition: background var(--transition);
       flex: 1;
     }
 
-    .blog-card:hover {
-      border-color: rgba(200,164,90,0.2);
-      background: var(--bg-3);
-    }
+    .blog-card:hover { background: var(--bg); }
 
     .blog-card-category {
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--green-light);
+      color: var(--accent);
+      font-weight: 500;
       margin-bottom: 0.5rem;
     }
 
     .blog-card-title {
       font-family: 'Syne', sans-serif;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       font-weight: 500;
       letter-spacing: -0.01em;
       color: var(--text-dim);
@@ -1031,12 +1037,58 @@
       transition: color var(--transition);
     }
 
-    .blog-card:hover .blog-card-title { color: var(--text); }
+    .blog-card:hover .blog-card-title { color: var(--accent); }
 
     .blog-card-date {
-      font-size: 0.65rem;
+      font-size: 0.63rem;
       color: var(--text-muted);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─────────────────────────────────────────
+       ILUSTRACIONES
+    ───────────────────────────────────────── */
+    #ilustraciones { background: var(--surface); }
+
+    .ilustraciones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .ilustracion-card {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .ilustracion-card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .ilustracion-card:hover img { transform: scale(1.03); }
+
+    .ilustracion-info {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .ilustracion-tipo {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .ilustracion-titulo {
+      font-size: 0.85rem;
+      color: var(--text-dim);
     }
 
     /* ─────────────────────────────────────────
@@ -1047,7 +1099,7 @@
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
-      gap: clamp(2rem, 6vw, 5rem);
+      gap: clamp(2.5rem, 6vw, 5rem);
       align-items: start;
     }
 
@@ -1057,7 +1109,7 @@
       font-family: 'Instrument Serif', serif;
       font-size: clamp(1rem, 2vw, 1.2rem);
       font-style: italic;
-      line-height: 1.8;
+      line-height: 1.85;
       color: var(--text-dim);
       margin-bottom: 2.5rem;
     }
@@ -1065,41 +1117,44 @@
     .contact-links {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0;
     }
 
     .contact-link {
       display: flex;
       align-items: center;
       gap: 1rem;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
       transition: color var(--transition);
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    .contact-link:hover { color: var(--gold-light); }
+    .contact-link:first-child { border-top: 1px solid var(--border); }
+    .contact-link:hover { color: var(--accent); }
 
     .contact-link-icon {
-      width: 36px; height: 36px;
-      border: 1px solid var(--border);
+      width: 32px; height: 32px;
+      border: 1px solid var(--border-med);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--gold);
+      color: var(--accent);
       flex-shrink: 0;
       transition: var(--transition);
     }
 
     .contact-link:hover .contact-link-icon {
-      border-color: var(--gold);
-      background: var(--gold-dim);
+      border-color: var(--accent);
+      background: var(--accent-dim);
     }
 
     /* Form */
     .contact-form {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.1rem;
     }
 
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -1111,41 +1166,50 @@
     }
 
     .form-label {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-muted);
+      font-weight: 500;
     }
 
     .form-input,
     .form-select,
     .form-textarea {
       background: var(--surface);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-med);
       color: var(--text);
       font-family: 'Manrope', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 300;
       padding: 0.85rem 1rem;
       outline: none;
-      transition: border-color var(--transition);
+      transition: border-color var(--transition), box-shadow var(--transition);
       width: 100%;
       appearance: none;
       -webkit-appearance: none;
     }
 
     .form-input::placeholder,
-    .form-textarea::placeholder { color: var(--text-muted); }
+    .form-textarea::placeholder { color: var(--text-muted); opacity: 0.7; }
 
     .form-input:focus,
     .form-select:focus,
     .form-textarea:focus {
-      border-color: rgba(200,164,90,0.45);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
     }
 
-    .form-select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%237a7568' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+    .form-select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%237a7870' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-color: var(--surface);
+      padding-right: 2.5rem;
+    }
 
-    .form-select option { background: var(--surface); }
+    .form-select option { background: var(--surface); color: var(--text); }
 
     .form-textarea { resize: vertical; min-height: 120px; }
 
@@ -1154,25 +1218,21 @@
       align-items: center;
       justify-content: center;
       gap: 0.75rem;
-      background: none;
-      border: 1px solid rgba(200,164,90,0.4);
-      color: var(--gold);
+      background: var(--accent);
+      border: none;
+      color: #ffffff;
       font-family: 'Manrope', sans-serif;
       font-size: 0.72rem;
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      padding: 1rem 2rem;
+      padding: 1rem 2.25rem;
       cursor: pointer;
       transition: var(--transition);
       align-self: flex-start;
     }
 
-    .form-submit:hover {
-      background: var(--gold-dim);
-      border-color: var(--gold);
-      letter-spacing: 0.2em;
-    }
+    .form-submit:hover { background: var(--accent-light); }
 
     .form-submit svg { transition: transform var(--transition); }
     .form-submit:hover svg { transform: translateX(4px); }
@@ -1180,19 +1240,19 @@
     .form-success {
       display: none;
       padding: 1rem 1.5rem;
-      border: 1px solid rgba(107,122,74,0.4);
-      background: var(--green-dim);
-      color: var(--green-light);
+      border: 1px solid rgba(44,74,30,0.25);
+      background: var(--accent-dim);
+      color: var(--accent-mid);
       font-size: 0.82rem;
       letter-spacing: 0.04em;
     }
 
     /* ─────────────────────────────────────────
-       FOOTER
+       FOOTER  (oscuro, contraste con el resto)
     ───────────────────────────────────────── */
     footer {
-      background: var(--bg-2);
-      border-top: 1px solid var(--border);
+      background: var(--text);
+      border-top: none;
       padding: 2.5rem clamp(1.5rem, 5vw, 4rem);
     }
 
@@ -1208,38 +1268,39 @@
 
     .footer-logo {
       font-family: 'Syne', sans-serif;
-      font-size: 0.95rem;
-      color: var(--text-muted);
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.05em;
     }
 
     .footer-copy {
-      font-size: 0.68rem;
-      color: var(--text-muted);
+      font-size: 0.64rem;
+      color: rgba(255,255,255,0.28);
       letter-spacing: 0.06em;
     }
 
     .footer-social {
       display: flex;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .footer-social a {
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.38);
       transition: color var(--transition);
-      font-size: 0.68rem;
+      font-size: 0.64rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
-    .footer-social a:hover { color: var(--gold-light); }
+    .footer-social a:hover { color: rgba(255,255,255,0.9); }
 
     /* ─────────────────────────────────────────
        FADE-IN ANIMATION
     ───────────────────────────────────────── */
     .fade-up {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
 
     .fade-up.visible {
@@ -1251,20 +1312,21 @@
        RESPONSIVE
     ───────────────────────────────────────── */
     @media (max-width: 900px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .about-photo-wrap { max-width: 360px; }
-      .press-grid { grid-template-columns: 1fr; }
-      .blog-grid { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
+      .about-grid         { grid-template-columns: 1fr; }
+      .about-photo-wrap   { max-width: 360px; }
+      .press-grid         { grid-template-columns: 1fr; }
+      .blog-grid          { grid-template-columns: 1fr; }
+      .contact-grid       { grid-template-columns: 1fr; }
+      .form-row           { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 680px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .hero-scroll { display: none; }
-      .about-stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-      .films-header { flex-direction: column; align-items: flex-start; }
+      .nav-links          { display: none; }
+      .hamburger          { display: flex; }
+      .hero-scroll        { display: none; }
+      .about-stats        { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+      .films-header       { flex-direction: column; align-items: flex-start; }
+      .gallery-grid       { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -1275,10 +1337,11 @@
        NAV
   ════════════════════════════════════════ -->
   <nav id="nav">
-    <a href="#hero" class="nav-logo">MS</a>
+    <a href="#hero" class="nav-logo">Martín Subirá</a>
     <ul class="nav-links">
       <li><a href="#about">Sobre mí</a></li>
       <li><a href="#films">Filmografía</a></li>
+      <li><a href="#bioanimal-gallery">Galería</a></li>
       <li><a href="#press">Prensa</a></li>
       <li><a href="#blog">Reflexiones</a></li>
       <li><a href="#contact">Contacto</a></li>
@@ -1290,11 +1353,12 @@
 
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="#about"  onclick="closeMobileMenu()">Sobre mí</a>
-    <a href="#films"  onclick="closeMobileMenu()">Filmografía</a>
-    <a href="#press"  onclick="closeMobileMenu()">Prensa</a>
-    <a href="#blog"   onclick="closeMobileMenu()">Reflexiones</a>
-    <a href="#contact" onclick="closeMobileMenu()">Contacto</a>
+    <a href="#about"             onclick="closeMobileMenu()">Sobre mí</a>
+    <a href="#films"             onclick="closeMobileMenu()">Filmografía</a>
+    <a href="#bioanimal-gallery" onclick="closeMobileMenu()">Galería</a>
+    <a href="#press"             onclick="closeMobileMenu()">Prensa</a>
+    <a href="#blog"              onclick="closeMobileMenu()">Reflexiones</a>
+    <a href="#contact"           onclick="closeMobileMenu()">Contacto</a>
   </div>
 
 
@@ -1303,16 +1367,7 @@
   ════════════════════════════════════════ -->
   <section id="hero">
     <div class="hero-bg">
-      <!--
-        ╔══════════════════════════════════════════════╗
-        ║  FOTO / VIDEO DE FONDO                       ║
-        ║  Reemplaza el div.hero-bg-placeholder con:   ║
-        ║  <img src="tu-foto.jpg" alt="" style="       ║
-        ║    width:100%;height:100%;object-fit:cover"> ║
-        ║  o con un <video autoplay muted loop>        ║
-        ╚══════════════════════════════════════════════╝
-      -->
-      <img src="images/bioanimal-patagonia-sunset.jpg" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">
+      <img src="images/bioanimal-patagonia-sunset.jpg" alt="">
       <div class="hero-bg-overlay"></div>
     </div>
 
@@ -1343,16 +1398,7 @@
       <div class="about-grid">
 
         <div class="about-photo-wrap fade-up">
-          <!--
-            ╔══════════════════════════════════════════════╗
-            ║  FOTO DE PERFIL                              ║
-            ║  Reemplaza el div.photo-placeholder con:     ║
-            ║  <img src="tu-foto.jpg" alt="Martín Subirá" ║
-            ║    style="width:100%;height:100%;            ║
-            ║    object-fit:cover">                        ║
-            ╚══════════════════════════════════════════════╝
-          -->
-          <img src="images/martin-en-rodaje.jpg" alt="Martín Subirá en rodaje" style="width:100%;height:100%;object-fit:cover">
+          <img src="images/martin-en-rodaje.jpg" alt="Martín Subirá en rodaje">
           <div class="about-photo-accent"></div>
         </div>
 
@@ -1437,7 +1483,7 @@
         <!-- ── RESCATISTAS ── -->
         <div class="film-card fade-up" data-category="ficcion" data-playlist='[{"title":"Trailer","url":"https://player.vimeo.com/video/50413399","thumb":"images/rescatistas-claqueta.jpg"},{"title":"Ep. 01","id":"6f69bJf4FzU"},{"title":"Ep. 02","coming":true},{"title":"Ep. 03","coming":true},{"title":"Ep. 04","coming":true},{"title":"Ep. 05","coming":true},{"title":"Ep. 06","coming":true},{"title":"Ep. 07","coming":true},{"title":"Ep. 08","coming":true}]'>
           <div class="film-thumb">
-            <img src="images/rescatistas-afiche.jpg" alt="Rescatistas: Brigada de montaña" style="width:100%;height:100%;object-fit:cover">
+            <img src="images/rescatistas-afiche.jpg" alt="Rescatistas: Brigada de montaña">
             <div class="film-thumb-overlay">
               <div class="play-btn">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -1457,16 +1503,16 @@
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
                   <path d="M6 1l1.3 2.7 3 .4-2.2 2.1.5 3L6 7.8 3.4 9.2l.5-3L1.7 4.1l3-.4L6 1z"/>
                 </svg>
-                Premio Concurso Federal de Series 2011
+                Premio Concurso Federal 2011
               </span>
             </div>
           </div>
         </div>
 
         <!-- ── LA DIGNIDAD DE LOS NADIES ── -->
-        <div class="film-card fade-up" data-category="documental" data-video="" style="transition-delay:0.16s">
+        <div class="film-card fade-up" data-category="documental" data-video="" style="transition-delay:0.08s">
           <div class="film-thumb">
-            <img src="https://picsum.photos/seed/dignity/600/400" alt="La dignidad de los nadies" style="width:100%;height:100%;object-fit:cover">
+            <img src="https://picsum.photos/seed/dignity/600/400" alt="La dignidad de los nadies">
             <div class="film-thumb-overlay">
               <div class="play-btn">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -1486,16 +1532,16 @@
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
                   <path d="M6 1l1.3 2.7 3 .4-2.2 2.1.5 3L6 7.8 3.4 9.2l.5-3L1.7 4.1l3-.4L6 1z"/>
                 </svg>
-                Top 227 · Mejores documentales de la historia
+                Top docs del siglo XXI
               </span>
             </div>
           </div>
         </div>
 
         <!-- ── ECLIPSE ── -->
-        <div class="film-card fade-up" data-category="corto" data-video="https://player.vimeo.com/video/82269045" style="transition-delay:0.24s">
+        <div class="film-card fade-up" data-category="corto" data-video="https://player.vimeo.com/video/82269045" style="transition-delay:0.16s">
           <div class="film-thumb">
-            <img src="images/eclipse.jpg" alt="Eclipse" style="width:100%;height:100%;object-fit:cover">
+            <img src="images/eclipse.jpg" alt="Eclipse">
             <div class="film-thumb-overlay">
               <div class="play-btn">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -1508,7 +1554,7 @@
           <div class="film-info">
             <p class="film-genre">Cortometraje · Director</p>
             <h3 class="film-title">Eclipse</h3>
-            <p class="film-desc">Cortometraje codirigido con Lautaro Santos. Ganador de Mejor Producción en argenKINO, Berlín — jurado integrado por Osvaldo Bayer y Peter Schumann. Participó en el Festival Internacional de Mar del Plata, el Festival Latinoamericano de Toulouse y el Festival del Mercosur (Brasil).</p>
+            <p class="film-desc">Cortometraje codirigido con Lautaro Santos. Ganador de Mejor Producción en argenKINO, Berlín. Participó en Mar del Plata, Toulouse y el Festival del Mercosur (Brasil).</p>
             <div class="film-meta">
               <span>Cortometraje</span>
               <span class="film-awards">
@@ -1524,7 +1570,7 @@
         <!-- ── SANTA BERLÍN ── -->
         <div class="film-card fade-up" data-category="corto" data-video="" style="transition-delay:0.08s">
           <div class="film-thumb">
-            <img src="https://picsum.photos/seed/berlin2005/600/400" alt="Santa Berlín" style="width:100%;height:100%;object-fit:cover">
+            <img src="https://picsum.photos/seed/berlin2005/600/400" alt="Santa Berlín">
             <div class="film-thumb-overlay">
               <div class="play-btn">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -1544,7 +1590,7 @@
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
                   <path d="M6 1l1.3 2.7 3 .4-2.2 2.1.5 3L6 7.8 3.4 9.2l.5-3L1.7 4.1l3-.4L6 1z"/>
                 </svg>
-                Selección INCAA · Noche del Cortometraje
+                Selección INCAA · Gaumont
               </span>
             </div>
           </div>
@@ -1553,7 +1599,7 @@
         <!-- ── EL LEGADO DEL VIENTO ── -->
         <div class="film-card fade-up" data-category="corto" data-video="" style="transition-delay:0.16s">
           <div class="film-thumb">
-            <img src="https://picsum.photos/seed/wind2003/600/400" alt="El legado del viento" style="width:100%;height:100%;object-fit:cover">
+            <img src="https://picsum.photos/seed/wind2003/600/400" alt="El legado del viento">
             <div class="film-thumb-overlay">
               <div class="play-btn">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -1569,15 +1615,15 @@
             <p class="film-desc">Uno de sus primeros trabajos como director. Participó en festivales nacionales e internacionales en el circuito de cortometraje argentino.</p>
             <div class="film-meta">
               <span>Cortometraje</span>
-              <span style="color:var(--text-muted);font-size:0.65rem;letter-spacing:0.06em">Festival circuit</span>
+              <span style="color:var(--text-muted);font-size:0.65rem;letter-spacing:0.06em">Circuito de festivales</span>
             </div>
           </div>
         </div>
 
         <!-- ── ANTÁRTICA DESAFÍO POLAR ── -->
-        <div class="film-card fade-up" data-category="documental" data-playlist='[{"title":"Demo · Serie completa","id":"Kk3h1R_HoHQ"},{"title":"Extra · Recital KUG Orchestra","id":"qV4P6X6Fz2o"},{"title":"Cap. 01","coming":true},{"title":"Cap. 02","coming":true},{"title":"Cap. 03","coming":true},{"title":"Cap. 04","coming":true}]'>
+        <div class="film-card fade-up" data-category="documental" data-playlist='[{"title":"Demo · Serie completa","id":"Kk3h1R_HoHQ"},{"title":"Extra · Recital KUG Orchestra","id":"qV4P6X6Fz2o"},{"title":"Cap. 01","coming":true},{"title":"Cap. 02","coming":true},{"title":"Cap. 03","coming":true},{"title":"Cap. 04","coming":true}]' style="transition-delay:0.24s">
           <div class="film-thumb">
-            <img src="https://img.youtube.com/vi/Kk3h1R_HoHQ/hqdefault.jpg" alt="Antártica Desafío Polar" style="width:100%;height:100%;object-fit:cover">
+            <img src="https://img.youtube.com/vi/Kk3h1R_HoHQ/hqdefault.jpg" alt="Antártica Desafío Polar">
             <div class="film-thumb-overlay">
               <div class="play-btn">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -1591,12 +1637,12 @@
             <h3 class="film-title">Antártica: Desafío Polar</h3>
             <p class="film-desc">Serie de 4 capítulos sobre el continente antártico. Banda sonora de Germán Tello · KUG Filmmusik Orchester, Graz, Austria.</p>
             <div class="film-meta">
-              <span>Serie documental · 4 capítulos</span>
+              <span>Serie documental · 4 caps.</span>
               <span class="film-awards">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
                   <path d="M6 1l1.3 2.7 3 .4-2.2 2.1.5 3L6 7.8 3.4 9.2l.5-3L1.7 4.1l3-.4L6 1z"/>
                 </svg>
-                Graz, Austria · KUG Filmmusik Orchester
+                KUG Orchester · Graz, Austria
               </span>
             </div>
           </div>
@@ -1605,7 +1651,7 @@
         <!-- ── BIO ANIMAL ── -->
         <div class="film-card fade-up" data-category="documental" data-video="" style="transition-delay:0.08s">
           <div class="film-thumb">
-            <img src="images/bioanimal-flamencos.jpg" alt="Bio Animal" style="width:100%;height:100%;object-fit:cover">
+            <img src="images/bioanimal-flamencos.jpg" alt="Bio Animal">
           </div>
           <div class="film-info">
             <p class="film-genre">Documental · Canal Encuentro</p>
@@ -1626,7 +1672,7 @@
         <!-- ── PUEBLOS ORIGINARIOS ── -->
         <div class="film-card fade-up" data-category="documental" data-video="https://drive.google.com/file/d/1uNyJlohk9jctY8Djp5xUVVeZuLPK_qSL/preview" style="transition-delay:0.16s">
           <div class="film-thumb">
-            <img src="images/anne-chapman.jpg" alt="Pueblos Originarios" style="width:100%;height:100%;object-fit:cover">
+            <img src="images/anne-chapman.jpg" alt="Pueblos Originarios">
             <div class="film-thumb-overlay">
               <div class="play-btn">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -1648,7 +1694,7 @@
         <!-- ── EQUILIBRIOS - PARQUES NACIONALES ── -->
         <div class="film-card fade-up" data-category="documental" data-playlist='[{"title":"Ep. 01 — Nahuel Huapi","id":"SaW_wbLLaic"},{"title":"Ep. 02","id":"A8Aq-FUWAD8"},{"title":"Ep. 03","coming":true},{"title":"Ep. 04","id":"Tl27wosSGPM"},{"title":"Ep. 05 — Campos del Tuyú","id":"ia7z4MY7Iag"}]' style="transition-delay:0.24s">
           <div class="film-thumb">
-            <img src="https://img.youtube.com/vi/SaW_wbLLaic/hqdefault.jpg" alt="Equilibrios - Parques Nacionales" style="width:100%;height:100%;object-fit:cover">
+            <img src="https://img.youtube.com/vi/SaW_wbLLaic/hqdefault.jpg" alt="Equilibrios - Parques Nacionales">
             <div class="film-thumb-overlay">
               <div class="play-btn">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -1662,7 +1708,7 @@
             <h3 class="film-title">Equilibrios — Parques Nacionales</h3>
             <p class="film-desc">Serie sobre los Parques Nacionales de la Argentina. 4 episodios disponibles.</p>
             <div class="film-meta">
-              <span>Serie documental · 4 episodios</span>
+              <span>Serie · 4 episodios</span>
             </div>
           </div>
         </div>
@@ -1670,7 +1716,7 @@
         <!-- ── AL CAÍDO - DOGO ── -->
         <div class="film-card fade-up" data-category="corto" data-video="https://www.youtube-nocookie.com/embed/P-U8n3Qb-VI">
           <div class="film-thumb">
-            <img src="https://picsum.photos/seed/dogoclip/600/400" alt="Al Caído - Dogo" style="width:100%;height:100%;object-fit:cover">
+            <img src="https://picsum.photos/seed/dogoclip/600/400" alt="Al Caído - Dogo">
             <div class="film-thumb-overlay">
               <div class="play-btn">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -1690,9 +1736,9 @@
         </div>
 
         <!-- ── SEÑALADA ── -->
-        <div class="film-card fade-up" data-category="corto" data-video="https://www.youtube.com/embed/qEM-ZiNkju0">
+        <div class="film-card fade-up" data-category="corto" data-video="https://www.youtube.com/embed/qEM-ZiNkju0" style="transition-delay:0.08s">
           <div class="film-thumb">
-            <img src="images/senalada.jpg" alt="Señalada" style="width:100%;height:100%;object-fit:cover">
+            <img src="images/senalada.jpg" alt="Señalada">
             <div class="film-thumb-overlay">
               <div class="play-btn">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -1704,7 +1750,7 @@
           <div class="film-info">
             <p class="film-genre">Cortometraje · Director</p>
             <h3 class="film-title">Señalada</h3>
-            <p class="film-desc">Una señalada es el ritual popular de marcar los animales del campo. Este cortometraje registra ese encuentro comunitario en El Mollar, Tucumán, Argentina, donde la tradición, la fiesta y el paisaje se funden en un mismo gesto.</p>
+            <p class="film-desc">Una señalada es el ritual popular de marcar los animales del campo. Este cortometraje registra ese encuentro comunitario en El Mollar, Tucumán, donde la tradición, la fiesta y el paisaje se funden en un mismo gesto.</p>
             <div class="film-meta">
               <span>Cortometraje</span>
             </div>
@@ -1712,9 +1758,9 @@
         </div>
 
         <!-- ── ANIMACIÓN TEHUELCHE ── -->
-        <div class="film-card fade-up" data-category="animacion" data-video="" style="transition-delay:0.08s">
+        <div class="film-card fade-up" data-category="animacion" data-video="" style="transition-delay:0.16s">
           <div class="film-thumb">
-            <img src="images/tehuelche-stopmotion.jpg" alt="Animación Tehuelche" style="width:100%;height:100%;object-fit:cover">
+            <img src="images/tehuelche-stopmotion.jpg" alt="El origen de los animales">
             <div class="film-year-badge">En producción</div>
           </div>
           <div class="film-info">
@@ -1723,7 +1769,7 @@
             <p class="film-desc">Historia narrada en idioma tehuelche sobre el origen de los animales. Animación stop motion actualmente en proceso de producción.</p>
             <div class="film-meta">
               <span>Cortometraje animado</span>
-              <span style="color:var(--gold);font-size:0.65rem;letter-spacing:0.06em">● En producción</span>
+              <span style="color:var(--accent);font-size:0.65rem;letter-spacing:0.06em;font-weight:500">● En producción</span>
             </div>
           </div>
         </div>
@@ -1731,7 +1777,7 @@
         <!-- ── HELICÓPTERO EN LOCACIÓN ── -->
         <div class="film-card fade-up" data-category="making-of" data-video="" style="transition-delay:0.24s">
           <div class="film-thumb">
-            <img src="images/helicoptero.jpg" alt="En locación" style="width:100%;height:100%;object-fit:cover">
+            <img src="images/helicoptero.jpg" alt="En las alturas">
           </div>
           <div class="film-info">
             <p class="film-genre">Making of · En locación</p>
@@ -1743,7 +1789,7 @@
         <!-- ── RODAJE CON ALEJANDRO LERNER ── -->
         <div class="film-card fade-up" data-category="making-of" data-video="" style="transition-delay:0.32s">
           <div class="film-thumb">
-            <img src="images/lerner.jpg" alt="Rodaje con Alejandro Lerner" style="width:100%;height:100%;object-fit:cover">
+            <img src="images/lerner.jpg" alt="Rodaje con Alejandro Lerner">
           </div>
           <div class="film-info">
             <p class="film-genre">Making of · Chroma</p>
@@ -1769,19 +1815,12 @@
         Cerrar
       </button>
       <div class="modal-video-wrap" id="modal-video-wrap">
-        <!--
-          El iframe se inyecta aquí dinámicamente cuando hay una URL en data-video.
-          Si data-video está vacío, se muestra el placeholder de abajo.
-        -->
         <div class="video-embed-placeholder">
           <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
             <rect x="6" y="10" width="44" height="36" rx="3" stroke="currentColor" stroke-width="1.5"/>
             <path d="M22 20l14 8-14 8V20z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
           </svg>
           <p>Agrega la URL del trailer en el atributo <code>data-video</code> de cada tarjeta</p>
-          <p style="font-size:0.7rem;color:var(--text-muted);max-width:360px">
-            Ejemplo: <code>data-video="https://www.youtube.com/embed/ID_DEL_VIDEO"</code>
-          </p>
         </div>
       </div>
     </div>
@@ -1791,32 +1830,33 @@
   <!-- ═══════════════════════════════════════
        GALERÍA BIO ANIMAL
   ════════════════════════════════════════ -->
-  <section id="bioanimal-gallery" style="padding: clamp(4rem,10vh,8rem) 0; background: var(--bg-2);">
+  <section id="bioanimal-gallery">
     <div class="container">
       <div class="fade-up">
         <p class="section-label">Galería</p>
         <h2 class="section-title">Bio Animal — <em>en el campo</em></h2>
-        <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.75rem;margin-bottom:2.5rem;max-width:540px;line-height:1.75">
+        <p style="font-size:0.88rem;color:var(--text-muted);margin-top:0.75rem;max-width:540px;line-height:1.8">
           Imágenes del rodaje de la serie documental para Canal Encuentro. Eco regiones argentinas.
         </p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.75rem;">
-        <img src="images/bioanimal-palmeras.jpg"       alt="Palmares" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-puma.jpg"           alt="Puma"     style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-flamencos2.jpg"     alt="Flamencos en laguna" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-flamencos3.jpg"     alt="Flamencos volando" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-capibara.jpg"       alt="Capibara" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-mono.jpg"           alt="Mono carayá" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-lobos.jpg"          alt="Lobos marinos" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-ciervo.jpg"         alt="Ciervo"  style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-costa.jpg"          alt="Costa patagónica" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-patagonia-sunset.jpg" alt="Atardecer patagónico" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-atardecer-reeds.jpg" alt="Atardecer en el bañado" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-bosque.jpg"         alt="Bosque"  style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-laguna.jpg"         alt="Laguna"  style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-garza.jpg"          alt="Garza"   style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-aerea.jpg"          alt="Vista aérea del monte" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
-        <img src="images/bioanimal-quirquincho2.jpg"   alt="Quirquincho" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px">
+
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="images/bioanimal-palmeras.jpg"          alt="Palmares"></div>
+        <div class="gallery-item"><img src="images/bioanimal-puma.jpg"              alt="Puma"></div>
+        <div class="gallery-item"><img src="images/bioanimal-flamencos2.jpg"        alt="Flamencos en laguna"></div>
+        <div class="gallery-item"><img src="images/bioanimal-flamencos3.jpg"        alt="Flamencos volando"></div>
+        <div class="gallery-item"><img src="images/bioanimal-capibara.jpg"          alt="Capibara"></div>
+        <div class="gallery-item"><img src="images/bioanimal-mono.jpg"              alt="Mono carayá"></div>
+        <div class="gallery-item"><img src="images/bioanimal-lobos.jpg"             alt="Lobos marinos"></div>
+        <div class="gallery-item"><img src="images/bioanimal-ciervo.jpg"            alt="Ciervo"></div>
+        <div class="gallery-item"><img src="images/bioanimal-costa.jpg"             alt="Costa patagónica"></div>
+        <div class="gallery-item"><img src="images/bioanimal-patagonia-sunset.jpg"  alt="Atardecer patagónico"></div>
+        <div class="gallery-item"><img src="images/bioanimal-atardecer-reeds.jpg"   alt="Atardecer en el bañado"></div>
+        <div class="gallery-item"><img src="images/bioanimal-bosque.jpg"            alt="Bosque"></div>
+        <div class="gallery-item"><img src="images/bioanimal-laguna.jpg"            alt="Laguna"></div>
+        <div class="gallery-item"><img src="images/bioanimal-garza.jpg"             alt="Garza"></div>
+        <div class="gallery-item"><img src="images/bioanimal-aerea.jpg"             alt="Vista aérea del monte"></div>
+        <div class="gallery-item"><img src="images/bioanimal-quirquincho2.jpg"      alt="Quirquincho"></div>
       </div>
     </div>
   </section>
@@ -1831,14 +1871,13 @@
       <div class="fade-up">
         <p class="section-label">Prensa</p>
         <h2 class="section-title">En los <em>medios</em></h2>
-        <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.75rem;max-width:540px;line-height:1.75">
+        <p style="font-size:0.88rem;color:var(--text-muted);margin-top:0.75rem;max-width:540px;line-height:1.8">
           Notas, entrevistas y cobertura periodística recopiladas de medios nacionales e internacionales.
         </p>
       </div>
 
       <div class="press-grid">
 
-        <!-- ── NOTA 1: Tiempos Sur, 2025 ── -->
         <a href="https://www.tiemposur.com.ar/politica/martin-subira-advirtio-sobre-la-falta-de-produccion-y-reivindico-el-rol-patagonico"
            target="_blank" rel="noopener" class="press-card fade-up">
           <div class="press-source-row">
@@ -1860,7 +1899,6 @@
           </div>
         </a>
 
-        <!-- ── NOTA 2: La Nación, 2012 ── -->
         <a href="https://www.lanacion.com.ar/espectaculos/aventuras-y-rescates-en-la-montana-y-los-hielos-nid1478679/"
            target="_blank" rel="noopener" class="press-card fade-up" style="transition-delay:0.08s">
           <div class="press-source-row">
@@ -1882,7 +1920,6 @@
           </div>
         </a>
 
-        <!-- ── NOTA 3: El Patagónico, 2013 ── -->
         <a href="https://www.elpatagonico.com/la-tv-publica-estreno-rescatistas-una-miniserie-que-exhibe-la-belleza-patagonica-n695939"
            target="_blank" rel="noopener" class="press-card fade-up" style="transition-delay:0.16s">
           <div class="press-source-row">
@@ -1904,7 +1941,6 @@
           </div>
         </a>
 
-        <!-- ── NOTA 4: Página/12, dic 2005 ── -->
         <a href="https://www.pagina12.com.ar/diario/suplementos/espectaculos/5-1292-2005-12-15.html"
            target="_blank" rel="noopener" class="press-card fade-up" style="transition-delay:0.08s">
           <div class="press-source-row">
@@ -1926,7 +1962,6 @@
           </div>
         </a>
 
-        <!-- ── NOTA 5: Página/12, nov 2005 ── -->
         <a href="https://www.pagina12.com.ar/diario/suplementos/espectaculos/5-1138-2005-11-28.html"
            target="_blank" rel="noopener" class="press-card fade-up" style="transition-delay:0.16s">
           <div class="press-source-row">
@@ -1948,7 +1983,6 @@
           </div>
         </a>
 
-        <!-- ── BASES DE DATOS ── -->
         <div class="press-card fade-up" style="transition-delay:0.24s;cursor:default;">
           <div class="press-source-row">
             <span class="press-source">Bases de datos</span>
@@ -1960,13 +1994,11 @@
           </p>
           <div class="press-footer">
             <span class="press-tag">IMDb · FilmAffinity · MUBI</span>
-            <div style="display:flex;gap:0.75rem">
+            <div style="display:flex;gap:1rem">
               <a href="https://www.imdb.com/name/nm2039091/" target="_blank" rel="noopener"
-                 style="font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);transition:opacity 0.3s"
-                 onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">IMDb</a>
+                 style="font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent)">IMDb</a>
               <a href="https://www.filmaffinity.com/es/name.php?name-id=231958635" target="_blank" rel="noopener"
-                 style="font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);transition:opacity 0.3s"
-                 onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">FilmAffinity</a>
+                 style="font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent)">FilmAffinity</a>
             </div>
           </div>
         </div>
@@ -1989,13 +2021,8 @@
 
       <div class="blog-grid">
 
-        <!-- ── ENTRADA DESTACADA ── -->
         <a href="#" class="blog-featured fade-up">
           <div class="blog-featured-img">
-            <!--
-              Reemplaza el div.blog-img-placeholder con:
-              <img src="blog-foto.jpg" alt="..." style="width:100%;height:100%;object-fit:cover">
-            -->
             <div class="blog-img-placeholder">Foto del artículo</div>
           </div>
           <div class="blog-featured-body">
@@ -2013,14 +2040,7 @@
           </div>
         </a>
 
-        <!-- ── SIDEBAR: entradas secundarias ── -->
         <div class="blog-sidebar fade-up" style="transition-delay:0.12s">
-
-          <a href="#" class="blog-card">
-            <p class="blog-card-category">Festival</p>
-            <h4 class="blog-card-title">Sundance 2026: lo que me llevo de vuelta a casa</h4>
-            <p class="blog-card-date">28 de enero, 2026</p>
-          </a>
 
           <a href="#" class="blog-card">
             <p class="blog-card-category">Técnica</p>
@@ -2040,6 +2060,12 @@
             <p class="blog-card-date">22 de mayo, 2025</p>
           </a>
 
+          <a href="#" class="blog-card">
+            <p class="blog-card-category">Memoria</p>
+            <h4 class="blog-card-title">Lo que aprendí editando con Solanas</h4>
+            <p class="blog-card-date">10 de febrero, 2025</p>
+          </a>
+
         </div>
 
       </div>
@@ -2050,22 +2076,24 @@
   <!-- ═══════════════════════════════════════
        ILUSTRACIONES & BOCETOS
   ════════════════════════════════════════ -->
-  <section id="ilustraciones" style="padding: clamp(4rem,10vh,8rem) 0; background: var(--bg);">
+  <section id="ilustraciones">
     <div class="container">
-      <p class="section-label fade-up">Ilustraciones & Bocetos</p>
+      <p class="section-label fade-up">Ilustraciones &amp; Bocetos</p>
       <h2 class="section-title fade-up">El <em>dibujo</em> como lenguaje</h2>
       <div class="divider fade-up"></div>
-      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem;">
-        <div class="fade-up" style="overflow:hidden; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border);">
-          <img src="images/ilustracion-serenata.png" alt="Serenata — ilustración" style="width:100%; display:block; object-fit:cover;">
-          <div style="padding: 1rem 1.25rem;">
-            <p style="font-family:'Syne',sans-serif; font-size:0.85rem; color:var(--gold-light); margin-bottom:0.25rem;">Ilustración</p>
-            <p style="font-size:0.82rem; color:var(--text-dim);">Serenata</p>
+
+      <div class="ilustraciones-grid">
+        <div class="ilustracion-card fade-up">
+          <img src="images/ilustracion-serenata.png" alt="Serenata — ilustración">
+          <div class="ilustracion-info">
+            <p class="ilustracion-tipo">Ilustración</p>
+            <p class="ilustracion-titulo">Serenata</p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- ═══════════════════════════════════════
        CONTACTO
@@ -2095,15 +2123,6 @@
               </span>
               martin@martinsubira.com
             </a>
-            <a href="tel:+5491100000000" class="contact-link">
-              <span class="contact-link-icon">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 2h3l1.5 3.5-1.8 1.1a8 8 0 004.7 4.7l1.1-1.8L15 11v3a1 1 0 01-1 1C6.3 15 1 9.7 1 3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              +54 (11) 0000-0000
-              <!-- Reemplaza con tu número real -->
-            </a>
             <a href="https://instagram.com/" target="_blank" rel="noopener" class="contact-link">
               <span class="contact-link-icon">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -2113,7 +2132,6 @@
                 </svg>
               </span>
               @martinsubira
-              <!-- Reemplaza con tu usuario real -->
             </a>
             <a href="https://vimeo.com/" target="_blank" rel="noopener" class="contact-link">
               <span class="contact-link-icon">
@@ -2122,7 +2140,15 @@
                 </svg>
               </span>
               vimeo.com/martinsubira
-              <!-- Reemplaza con tu usuario real -->
+            </a>
+            <a href="https://www.imdb.com/name/nm2039091/" target="_blank" rel="noopener" class="contact-link">
+              <span class="contact-link-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+                  <path d="M4.5 10.5V5.5M4.5 8h2M6.5 5.5v5M8.5 5.5v5M8.5 8c0-1.5 3-1.5 3 0v2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              IMDb · nm2039091
             </a>
           </div>
         </div>
@@ -2145,6 +2171,7 @@
               <option value="">Selecciona una opción</option>
               <option>Co-producción</option>
               <option>Encargo documental</option>
+              <option>Dirección de fotografía</option>
               <option>Charla / Masterclass</option>
               <option>Prensa</option>
               <option>Otro</option>
@@ -2181,9 +2208,10 @@
       <span class="footer-logo">Martín Subirá</span>
       <span class="footer-copy">&copy; 2026 — Todos los derechos reservados</span>
       <div class="footer-social">
-        <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://vimeo.com/"     target="_blank" rel="noopener">Vimeo</a>
-        <a href="https://imdb.com/"      target="_blank" rel="noopener">IMDb</a>
+        <a href="https://instagram.com/"                          target="_blank" rel="noopener">Instagram</a>
+        <a href="https://vimeo.com/"                              target="_blank" rel="noopener">Vimeo</a>
+        <a href="https://www.imdb.com/name/nm2039091/"            target="_blank" rel="noopener">IMDb</a>
+        <a href="https://www.filmaffinity.com/es/name.php?name-id=231958635" target="_blank" rel="noopener">FilmAffinity</a>
       </div>
     </div>
   </footer>
@@ -2200,7 +2228,7 @@
     }, { passive: true });
 
     /* ── Mobile menu ── */
-    const hamburger = document.getElementById('hamburger');
+    const hamburger  = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
 
     hamburger.addEventListener('click', () => {
@@ -2237,9 +2265,8 @@
     const videoWrap  = document.getElementById('modal-video-wrap');
     const modalClose = document.getElementById('modal-close');
 
-    const placeholderHTML = videoWrap.innerHTML; // save placeholder
-
-    const modalInner = document.querySelector('.modal-inner');
+    const placeholderHTML = videoWrap.innerHTML;
+    const modalInner      = document.querySelector('.modal-inner');
 
     function playVideo(embedUrl) {
       modalInner.classList.remove('playlist-mode');
@@ -2251,20 +2278,21 @@
 
     function epEmbedUrl(ep) {
       if (ep.url) return ep.url;
-      if (ep.id) return `https://www.youtube.com/embed/${ep.id}`;
+      if (ep.id)  return `https://www.youtube.com/embed/${ep.id}`;
       return null;
     }
 
     function epThumbHtml(ep) {
       if (ep.thumb) return `<img src="${ep.thumb}" alt="${ep.title}">`;
-      if (ep.id) return `<img src="https://img.youtube.com/vi/${ep.id}/hqdefault.jpg" alt="${ep.title}">`;
+      if (ep.id)    return `<img src="https://img.youtube.com/vi/${ep.id}/hqdefault.jpg" alt="${ep.title}">`;
       return `<div class="playlist-ep-placeholder"></div>`;
     }
 
     filmCards.forEach(card => {
       card.addEventListener('click', () => {
-        const url = card.dataset.video;
+        const url      = card.dataset.video;
         const playlist = card.dataset.playlist;
+
         if (playlist) {
           const episodes = JSON.parse(playlist);
           modalInner.classList.add('playlist-mode');
@@ -2313,7 +2341,7 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
     /* ── Fade-up on scroll ── */
-    const fadeEls = document.querySelectorAll('.fade-up');
+    const fadeEls  = document.querySelectorAll('.fade-up');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -2321,7 +2349,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
 
     fadeEls.forEach(el => observer.observe(el));
 
@@ -2331,18 +2359,14 @@
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-      /*
-        Aquí puedes conectar con un servicio como Formspree, EmailJS o tu propio backend.
-        Por ahora mostramos el mensaje de éxito visual.
-      */
       const btn = form.querySelector('.form-submit');
-      btn.disabled = true;
+      btn.disabled    = true;
       btn.textContent = 'Enviando...';
 
       setTimeout(() => {
         success.style.display = 'block';
         form.reset();
-        btn.disabled = false;
+        btn.disabled  = false;
         btn.innerHTML = 'Enviado <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       }, 800);
     });
