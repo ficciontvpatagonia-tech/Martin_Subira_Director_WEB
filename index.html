@@ -1380,11 +1380,14 @@
     /* ─────────────────────────────────────────
        GOOGLE TRANSLATE — ocultar barra nativa
     ───────────────────────────────────────── */
-    .goog-te-banner-frame.skiptranslate { display: none !important; }
-    .goog-te-gadget                     { display: none !important; }
-    #goog-gt-tt                         { display: none !important; }
-    .goog-te-highlight                  { background: none !important; box-shadow: none !important; }
-    body                                { top: 0 !important; }
+    .goog-te-banner-frame,
+    .goog-te-banner-frame.skiptranslate,
+    iframe.goog-te-banner-frame           { display: none !important; }
+    .goog-te-gadget                       { display: none !important; }
+    #goog-gt-tt                           { display: none !important; }
+    .goog-te-highlight                    { background: none !important; box-shadow: none !important; }
+    body                                  { top: 0 !important; }
+    html body                             { top: 0 !important; }
   </style>
 </head>
 
@@ -2415,6 +2418,22 @@
     }, { threshold: 0.1 });
 
     fadeEls.forEach(el => observer.observe(el));
+
+    /* ── Ocultar banner de Google Translate dinámicamente ── */
+    (function hideBanner() {
+      function removeBanner() {
+        var banner = document.querySelector('.goog-te-banner-frame');
+        if (banner) banner.style.cssText = 'display:none!important';
+        if (document.body && document.body.style.top !== '0px') {
+          document.body.style.top = '0px';
+        }
+      }
+      // Vigilar cambios en el DOM para capturar el banner cuando Google lo inyecta
+      var mo = new MutationObserver(removeBanner);
+      mo.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
+      // También limpiar periódicamente por las dudas
+      setInterval(removeBanner, 500);
+    })();
 
     /* ── Google Translate — Language switcher ── */
     function googleTranslateElementInit() {
