@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /Users/jm/Desktop/CLAUDCODE/VISUAL_STUDIO_CODE/Proyectos/martin-subira-web && git add -A && git diff --cached --quiet || (git commit -m 'auto: update desde Claude Code' && git push) 2>/dev/null || true",
+            "statusMessage": "Subiendo cambios a GitHub..."
+          }
+        ]
+      }
+    ]
+  }
+}
